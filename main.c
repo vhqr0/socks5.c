@@ -60,11 +60,11 @@ void daemonize() {
     perror("fork failed");
     exit(-1);
   } else if (pid) {
-    _exit(0);
+    exit(0);
   }
   if (setsid() < 0) {
     perror("setsid failed");
-    exit(0);
+    exit(-1);
   }
   signal(SIGHUP, SIG_IGN);
   chdir("/");
