@@ -175,16 +175,13 @@ void *thread_main(void *arg) {
     goto exit;
   }
   if (ret < 2 || buf[0] != 5 || ret != buf[1] + 2) {
-    LOG("%ld: state1 invalid data: %s\n", tid, strerror(errno));
+    LOG("%ld: state1 invalid data\n", tid);
     goto exit;
   }
   for (i = 2; i < ret; i++)
     if (buf[i] == METH_NOAUTH)
       break;
-  if (i == ret)
-    buf[1] = METH_NOACCEPT;
-  else
-    buf[1] = METH_NOAUTH;
+  buf[1] = i == ret ? METH_NOACCEPT : METH_NOAUTH;
   if ((ret = Writen(connfd, buf, 2)) < 0) {
     LOG("%ld: state1 write failed: %s\n", tid, strerror(errno));
     goto exit;
