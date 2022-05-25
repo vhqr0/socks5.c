@@ -417,7 +417,7 @@ reply:
             }
             goto exit;
           }
-          LOG("%ld: stat3 send failed: %s\n", tid, strerror(errno));
+          LOG("%ld: state3 send failed: %s\n", tid, strerror(errno));
           goto exit;
         }
         if (ret == len) {
@@ -464,7 +464,7 @@ reply:
             }
             goto exit;
           }
-          LOG("%ld: stat3 send failed: %s\n", tid, strerror(errno));
+          LOG("%ld: state3 send failed: %s\n", tid, strerror(errno));
           goto exit;
         }
         if (ret == len2) {
